@@ -25,8 +25,6 @@
 import { defineProps } from 'vue'
 import Button from 'primevue/button'
 
-// eslint-disable-next-line no-console
-
 const props = defineProps({
   label: String,
   rounded: {
