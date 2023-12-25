@@ -41,5 +41,4 @@ npm-debug.log*
 
 
 # Ignore Lara and Wind presets in Vue project
-/src/presets/lara/
 /src/presets/wind/
