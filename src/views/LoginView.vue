@@ -1,83 +1,113 @@
 <template>
   <div
     class="relative bg-center bg-no-repeat bg-cover"
-    style="
-      background-image: url(https://images.unsplash.com/photo-1513546493312-0066d7de3fd2?q=80&w=3370&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D;fit=crop&amp;w=1951&amp;q=80);
-    "
+    :style="{ 'background-image': 'url(' + backgroundImage + ')' }"
   >
-    <div></div>
-    <div class="justify-center min-h-screen mx-0 sm:flex sm:flex-row">
+    <div class="justify-center min-h-screen mx-0 flex flex-row">
       <div
-        class="z-10 flex flex-col self-center p-10 sm:max-w-5xl xl:max-w-2xl"
+        class="z-10 flex flex-col self-center hidden lg:flex p-10 sm:max-w-5xl xl:max-w-2xl transform -translate-y-[60%]"
       >
-        <div class="flex-col self-start hidden text-white lg:flex">
+        <div
+          class="flex-col self-start text-white lg:flex dark:text-indigo-300"
+        >
           <img src="" class="mb-3" />
           <h1 class="mb-3 text-5xl font-bold">Weeshr Admin</h1>
-          <p class="pr-3">
+          <p class="pr-3 max-w-[500px]">
             Unleash the power of seamless management and control with our admin
             tools.
           </p>
         </div>
       </div>
-      <div class="z-10 flex self-center justify-center">
-        <div class="p-12 mx-auto bg-white rounded-2xl w-100">
+
+      <div
+        class="z-10 flex flex-col self-center justify-center transform -translate-y-[80px]"
+      >
+        <div
+          class="flex flex-col items-center self-center w-full text-white pb-14 lg:hidden dark:text-indigo-300"
+        >
+          <h1 class="mb-3 text-5xl font-bold">Weeshr Admin</h1>
+          <p class="w-10/12 text-center">
+            Unleash the power of seamless management and control with our admin
+            tools.
+          </p>
+        </div>
+
+        <div
+          class="p-8 mx-auto bg-white dark:bg-slate-700 rounded-2xl w-[350px]"
+        >
           <div class="mb-4">
-            <h3 class="text-2xl font-semibold text-gray-800">Sign In</h3>
-            <p class="text-gray-500">Please sign in to your account.</p>
+            <h3 class="text-2xl font-semibold text-gray-800 dark:text-blue-300">
+              Sign In
+            </h3>
+            <p class="text-gray-500 dark:text-gray-400">
+              Please sign in to your account.
+            </p>
           </div>
-          <div class="space-y-5">
-            <div class="space-y-2">
-              <label class="text-sm font-medium tracking-wide text-gray-700">
-                Email
-              </label>
-              <input
-                class="w-full px-4 py-2 text-base border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-800"
-                type=""
-                placeholder="user@gmail.com"
-              />
-            </div>
-            <div class="space-y-2">
-              <label
-                class="mb-5 text-sm font-medium tracking-wide text-gray-700"
-              >
-                Password
-              </label>
-              <input
-                class="content-center w-full px-4 py-2 text-base border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-800"
-                type=""
-                placeholder="Enter your password"
-              />
-            </div>
-            <div class="flex items-center justify-between">
-              <div class="flex items-center">
-                <input
-                  id="remember_me"
-                  name="remember_me"
-                  type="checkbox"
-                  class="w-4 h-4 bg-indigo-800 border-gray-300 rounded focus:ring-indigo-800"
-                />
+
+          <div class="pt-4 space-y-5">
+            <form @submit.prevent="login">
+              <div class="space-y-2 flex flex-col field">
                 <label
-                  for="remember_me"
-                  class="block ml-2 text-sm text-gray-800"
+                  class="text-base font-medium tracking-wide text-gray-700 dark:text-indigo-300"
+                  for="email"
                 >
-                  Remember me
+                  Email
                 </label>
+                <InputText
+                  v-model="email"
+                  aria-describedby="email-help"
+                  type="email"
+                  placeholder="user@gmail.com"
+                  :class="{ 'p-invalid': errors.email }"
+                />
+                <small id="email-help" class="p-error text-red">
+                  {{ errors.email }}
+                </small>
               </div>
-              <div class="text-sm">
-                <a href="#" class="text-indigo-800 hover:text-indigo-300">
-                  Forgot your password?
-                </a>
+
+              <div class="space-y-2 flex flex-col pt-2">
+                <label
+                  class="text-base font-medium tracking-wide text-gray-700 dark:text-indigo-300"
+                  for="password"
+                >
+                  Password
+                </label>
+                <InputText
+                  v-model="password"
+                  aria-describedby="password-help"
+                  placeholder="Enter your password"
+                  type="password"
+                  :class="{ 'p-invalid': errors.password }"
+                />
+                <small id="password-help" class="p-error">
+                  {{ errors.password }}
+                </small>
               </div>
-            </div>
-            <div>
-              <button
-                type="submit"
-                class="flex justify-center w-full p-3 font-semibold tracking-wide text-gray-100 transition duration-500 ease-in bg-indigo-800 rounded-full shadow-lg cursor-pointer hover:bg-indigo-800"
-              >
-                Sign in
-              </button>
-            </div>
+
+              <div class="flex items-center justify-between py-4 field">
+                <div class="flex items-center">
+                  <a
+                    href="#"
+                    class="text-indigo-800 hover:text-indigo-300 dark:text-indigo-300"
+                  >
+                    Forgot your password?
+                  </a>
+                </div>
+              </div>
+
+              <div>
+                <Toast />
+                <Button
+                  class=""
+                  label="Sign In"
+                  :rounded="true"
+                  :loading="loading"
+                  :handleButtonClick="onSubmit"
+                />
+              </div>
+            </form>
           </div>
+
           <div class="pt-5 text-xs text-center text-gray-400">
             <span>
               Copyright © 2023
@@ -89,4 +119,81 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import Button from '@/components/ui/Button.vue'
+
+import InputText from 'primevue/inputtext'
+import { ref } from 'vue'
+import { useToast } from 'primevue/usetoast'
+import { useForm } from 'vee-validate'
+import * as yup from 'yup'
+
+const loading = ref(false)
+const toast = useToast()
+
+const schema = yup.object({
+  email: yup.string().required().email().label('Email address'),
+  password: yup.string().required().min(6).label('Password'),
+})
+
+const { defineField, handleSubmit, resetForm, errors } = useForm({
+  validationSchema: schema,
+})
+
+const [email] = defineField('email')
+const [password] = defineField('password')
+
+const successMessages = [
+  'Welcome, OliviaOps! Your daily dose of admin joy is here!',
+  "Woohoo! OliviaOps just joined the admin party. Let's celebrate!",
+  "Look up in the server room! It's OliviaOps – our superhero admin!",
+  'Buckle up, OliviaOps! Your admin superpowers fueled by coffee are activated.',
+  'Adventure awaits, OliviaOps! Ready to explore the admin universe?',
+  'Abracadabra! OliviaOps, the Tech wizard, is in the house.',
+  'Welcome, OliviaOps! The admin puzzle is ready for your genius touch.',
+]
+
+const show = () => {
+  const randomIndex = Math.floor(Math.random() * successMessages.length)
+  const randomMessage = successMessages[randomIndex]
+
+  toast.add({
+    severity: 'success',
+    summary: 'Login successful ',
+    detail: randomMessage,
+    life: 2000,
+  })
+}
+
+const onSubmit = handleSubmit((values) => {
+  login()
+})
+
+const login = () => {
+  console.log('Login started')
+
+  loading.value = true
+
+  // Simulate an asynchronous login process
+  setTimeout(() => {
+    loading.value = false
+
+    show()
+
+    // Add your logic for successful login here
+  }, 2000) // Adjust the timeout duration as needed
+}
+
+const backgroundImages = [
+  'https://res.cloudinary.com/drykej1am/image/upload/v1703539604/weeshr_admin/cltgg7aorzfbku6tcodq.jpg',
+  'https://res.cloudinary.com/drykej1am/image/upload/v1703539599/weeshr_admin/zwyzwma2zqddwczmvtrq.jpg',
+  'https://res.cloudinary.com/drykej1am/image/upload/v1703539593/weeshr_admin/ovd0fdxnikreyt3ya2w3.jpg',
+]
+
+const backgroundImage = ref(getRandomImage())
+
+function getRandomImage() {
+  const randomIndex = Math.floor(Math.random() * backgroundImages.length)
+  return backgroundImages[randomIndex]
+}
+</script>
