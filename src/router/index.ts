@@ -1,13 +1,12 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 // @ts-ignore: TS2307
-import DefaultLayout from '@/layouts/DefaultLayout.vue'
 
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
     name: 'Public',
     // @ts-ignore: TS2307
-    component: DefaultLayout,
+    component: () => import('@/layouts/DefaultLayout.vue'),
     children: [
       {
         path: '/',
