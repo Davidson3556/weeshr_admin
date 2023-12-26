@@ -3,7 +3,7 @@
     class="relative bg-center bg-no-repeat bg-cover"
     :style="{ 'background-image': 'url(' + backgroundImage + ')' }"
   >
-    <div class="justify-center min-h-screen mx-0 flex flex-row">
+    <div class="flex flex-row justify-center min-h-screen mx-0">
       <div
         class="z-10 flex flex-col self-center hidden lg:flex p-10 sm:max-w-5xl xl:max-w-2xl transform -translate-y-[60%]"
       >
@@ -46,7 +46,7 @@
 
           <div class="pt-4 space-y-5">
             <form @submit.prevent="login">
-              <div class="space-y-2 flex flex-col field">
+              <div class="flex flex-col space-y-2 field">
                 <label
                   class="text-base font-medium tracking-wide text-gray-700 dark:text-indigo-300"
                   for="email"
@@ -59,13 +59,16 @@
                   type="email"
                   placeholder="user@gmail.com"
                   :class="{ 'p-invalid': errors.email }"
+                  class="block"
                 />
-                <small id="email-help" class="p-error text-red">
-                  {{ errors.email }}
-                </small>
+                <div class="h-[10px] flex items-center">
+                  <small id="email-help" class="mt-0 p-error text-red">
+                    {{ errors.email }}
+                  </small>
+                </div>
               </div>
 
-              <div class="space-y-2 flex flex-col pt-2">
+              <div class="flex flex-col pt-2 space-y-2">
                 <label
                   class="text-base font-medium tracking-wide text-gray-700 dark:text-indigo-300"
                   for="password"
@@ -79,9 +82,11 @@
                   type="password"
                   :class="{ 'p-invalid': errors.password }"
                 />
-                <small id="password-help" class="p-error">
-                  {{ errors.password }}
-                </small>
+                <div class="h-[10px] flex items-center">
+                  <small id="password-help" class="p-error">
+                    {{ errors.password }}
+                  </small>
+                </div>
               </div>
 
               <div class="flex items-center justify-between py-4 field">
@@ -95,10 +100,10 @@
                 </div>
               </div>
 
-              <div>
-                <Toast />
+              <Toast />
+              <div class="flex w-full py-100">
                 <Button
-                  class=""
+                  class="w-full overflow"
                   label="Sign In"
                   :rounded="true"
                   :loading="loading"

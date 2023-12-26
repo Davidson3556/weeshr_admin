@@ -5,11 +5,14 @@
       type="button"
       :label="label"
       icon="pi pi-check"
-      :pt="{ root: '!text-white !w-full !font-semibold !bg-primary-700  ' }"
+      :pt="{
+        root: '!text-white !w-full !font-semibold !bg-primary-700  ',
+      }"
       :ptOptions="{ mergeProps: true }"
       :loading="loading"
       @click="handleButtonClick()"
       rounded
+      v-ripple
     />
     <Button
       v-else
