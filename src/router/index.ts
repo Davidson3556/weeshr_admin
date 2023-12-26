@@ -1,12 +1,13 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-import DefaultLayout from '@/Layouts/DefaultLayout.vue'
+// @ts-ignore: TS2307
+import DefaultLayout from '@/layouts/DefaultLayout.vue'
 
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
     name: 'LoginView',
-    component: () =>
-      import(/* webpackChunkName: "login" */ '../views/LoginView.vue'),
+    // @ts-ignore: TS2307
+    component: () => import('@/views/LoginView.vue'),
     meta: { Layout: DefaultLayout },
   },
 ]
