@@ -28,11 +28,11 @@
 import { defineProps } from 'vue'
 import Button from 'primevue/button'
 
-const props = defineProps({
+defineProps({
   label: String,
   rounded: {
     type: Boolean,
-    default: false, // Set a default value, making it optional
+    default: false,
   },
   loading: {
     type: Boolean,
@@ -40,7 +40,7 @@ const props = defineProps({
   },
   handleButtonClick: {
     type: Function,
-    default: () => {}, // Set a default empty function if not provided
+    default: () => {},
   },
 })
 </script>

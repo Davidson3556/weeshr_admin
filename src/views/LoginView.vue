@@ -141,7 +141,7 @@ const schema = yup.object({
   password: yup.string().required().min(6).label('Password'),
 })
 
-const { defineField, handleSubmit, resetForm, errors } = useForm({
+const { defineField, handleSubmit, errors } = useForm({
   validationSchema: schema,
 })
 
@@ -170,13 +170,11 @@ const show = () => {
   })
 }
 
-const onSubmit = handleSubmit((values) => {
+const onSubmit = handleSubmit(() => {
   login()
 })
 
 const login = () => {
-  console.log('Login started')
-
   loading.value = true
 
   // Simulate an asynchronous login process
