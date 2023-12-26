@@ -19,9 +19,7 @@
         </div>
       </div>
 
-      <div
-        class="z-10 flex flex-col self-center justify-center transform -translate-y-[80px]"
-      >
+      <div class="z-10 flex flex-col self-center justify-center transform">
         <div
           class="flex flex-col items-center self-center w-full text-white pb-14 lg:hidden dark:text-indigo-300"
         >
