@@ -8,7 +8,8 @@
     <HeaderPublic></HeaderPublic>
 
     <div>
-      <slot></slot>
+              <router-view/>
+
     </div>
   </div>
 </template>

@@ -5,10 +5,16 @@ import DefaultLayout from '@/layouts/DefaultLayout.vue'
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    name: 'LoginView',
+    name: 'Public',
     // @ts-ignore: TS2307
-    component: () => import('@/views/LoginView.vue'),
-    meta: { Layout: DefaultLayout },
+    component: DefaultLayout,
+    children: [
+      {
+        path: '/',
+        name: 'Login',
+        component: () => import('@/views/LoginView.vue'),
+      },
+    ],
   },
 ]
 
