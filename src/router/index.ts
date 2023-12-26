@@ -6,7 +6,7 @@ const routes: RouteRecordRaw[] = [
     path: '/',
     name: 'Public',
     // @ts-ignore: TS2307
-    component: () => import('@/layouts/DefaultLayout.vue'),
+    component: () => import('@/components/layouts/DefaultLayout.vue'),
     children: [
       {
         path: '/',
