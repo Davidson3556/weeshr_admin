@@ -180,9 +180,7 @@ const login = () => {
   // Simulate an asynchronous login process
   setTimeout(() => {
     loading.value = false
-
     show()
-
     // Add your logic for successful login here
   }, 2000) // Adjust the timeout duration as needed
 }
